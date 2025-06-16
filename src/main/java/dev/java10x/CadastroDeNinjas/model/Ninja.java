@@ -1,6 +1,9 @@
 package dev.java10x.CadastroDeNinjas.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -8,6 +11,9 @@ import java.util.List;
 // JPA = Java Persistence API
 @Entity
 @Table(name = "tb_cadastro")
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class Ninja {
 
     @Id
@@ -22,15 +28,6 @@ public class Ninja {
     @ManyToOne
     @JoinColumn(name = "missao_id") // Join com id da missão
     private Missao missao;
-
-    public Ninja() {
-    }
-
-    public Ninja(String nome, String email, int idade) {
-        this.nome = nome;
-        this.email = email;
-        this.idade = idade;
-    }
 
     public String getNome() {
         return nome;

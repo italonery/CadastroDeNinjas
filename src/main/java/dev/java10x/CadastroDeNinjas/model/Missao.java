@@ -1,11 +1,17 @@
 package dev.java10x.CadastroDeNinjas.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
 @Table(name = "tb_missao")
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class Missao {
 
     @Id
@@ -18,15 +24,6 @@ public class Missao {
     // Mapeado por missão em Ninja
     @OneToMany(mappedBy = "missao")
     private List<Ninja> ninjas;
-
-    public Missao() {
-    }
-
-    public Missao(Long id, String nome, String dificuldade) {
-        this.id = id;
-        this.nome = nome;
-        this.dificuldade = dificuldade;
-    }
 
     public Long getId() {
         return id;
