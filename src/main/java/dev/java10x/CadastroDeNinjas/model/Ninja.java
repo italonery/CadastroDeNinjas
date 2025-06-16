@@ -1,12 +1,14 @@
-package dev.java10x.CadastroDeNinjas;
+package dev.java10x.CadastroDeNinjas.model;
 
 import jakarta.persistence.*;
+
+import java.util.List;
 
 // Transforma uma classe em uma entidade do BD
 // JPA = Java Persistence API
 @Entity
 @Table(name = "tb_cadastro")
-public class NinjaModel {
+public class Ninja {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,10 +17,16 @@ public class NinjaModel {
     private String email;
     private int idade;
 
-    public NinjaModel() {
+    // Um ninja pode ter apenas uma missão
+    // Muitos ninjas tem uma única missão
+    @ManyToOne
+    @JoinColumn(name = "missao_id") // Join com id da missão
+    private Missao missao;
+
+    public Ninja() {
     }
 
-    public NinjaModel(String nome, String email, int idade) {
+    public Ninja(String nome, String email, int idade) {
         this.nome = nome;
         this.email = email;
         this.idade = idade;
