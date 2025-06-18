@@ -5,6 +5,7 @@ import dev.java10x.CadastroDeNinjas.service.NinjaService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("ninjas")
@@ -27,25 +28,25 @@ public class NinjaController {
         return  "Ninja criado com sucesso";
     }
 
-    // mostrar todos os ninjas (READ)
+    // Listar todos os ninjas (READ)
     @GetMapping("/listar")
     public List<Ninja> listarNinjas() {
         return  ninjaService.listarNinjas();
     }
 
-    // procurar ninja por ID (READ)
-    @GetMapping("/listarID")
-    public String mostrarTodosOsNinjasPorId() {
-        return  "Ninja listado com sucesso";
+    // Listar ninja por ID (READ)
+    @GetMapping("/listar/{id}")
+    public Ninja listarNinjaPorId(@PathVariable Long id) {
+        return  ninjaService.listarNinjaPorId(id);
     }
 
-    // alterar dados dos ninjas (UPDATE)
+    // Alterar ninja (UPDATE)
     @PutMapping("/alterarID")
     public String alterarNinjaPorId() {
         return "Ninja alterado com sucesso";
     }
 
-    // deletar ninja (DELETE)
+    // Deletar ninja (DELETE)
     @DeleteMapping("/deletarID")
     public String deletarNinjaPorId() {
         return "Ninja deletado com sucesso";
