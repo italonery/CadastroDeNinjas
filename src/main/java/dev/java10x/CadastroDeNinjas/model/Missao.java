@@ -1,5 +1,6 @@
 package dev.java10x.CadastroDeNinjas.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +24,7 @@ public class Missao {
     // Uma missão pode ter vários ninjas
     // Mapeado por missão em Ninja
     @OneToMany(mappedBy = "missao")
+    @JsonIgnore // Ignora o loop de serialização
     private List<Ninja> ninjas;
 
     public Long getId() {
