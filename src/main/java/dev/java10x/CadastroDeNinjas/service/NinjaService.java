@@ -1,5 +1,7 @@
 package dev.java10x.CadastroDeNinjas.service;
 
+import dev.java10x.CadastroDeNinjas.dto.NinjaDTO;
+import dev.java10x.CadastroDeNinjas.mapper.NinjaMapper;
 import dev.java10x.CadastroDeNinjas.model.Ninja;
 import dev.java10x.CadastroDeNinjas.repository.NinjaRepository;
 import org.springframework.stereotype.Service;
@@ -13,9 +15,11 @@ public class NinjaService {
     // @Autowired inicializa e controla o construtor da injeção de dependências
     // Por boas práticas, criar construtor ao invés de utilizazr Autowired
     private NinjaRepository ninjaRepository;
+    private NinjaMapper ninjaMapper;
 
-    public NinjaService(NinjaRepository ninjaRepository) {
+    public NinjaService(NinjaRepository ninjaRepository, NinjaMapper ninjaMapper) {
         this.ninjaRepository = ninjaRepository;
+        this.ninjaMapper = ninjaMapper;
     }
 
     // Listar todos os ninjas
@@ -30,8 +34,10 @@ public class NinjaService {
     }
 
     // Criar um ninja
-    public Ninja criarNinja(Ninja ninja) {
-        return ninjaRepository.save(ninja);
+    public NinjaDTO criarNinja(NinjaDTO ninjaDTO) {
+        Ninja ninja = new NinjaMapper().map(ninjaDTO);
+        ninja = ninjaRepository.save(ninja);
+        return ninjaMapper.map(ninja);
     }
 
     public Ninja alterarNinja(Long id, Ninja ninja) {
