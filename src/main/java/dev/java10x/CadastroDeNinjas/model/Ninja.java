@@ -30,6 +30,9 @@ public class Ninja {
     @Column(name = "idade")
     private int idade;
 
+    @Column(name = "rank")
+    private String rank;
+
     // Um ninja pode ter apenas uma missão
     // Muitos ninjas tem uma única missão
     @ManyToOne
